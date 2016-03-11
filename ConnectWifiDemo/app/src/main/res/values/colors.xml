@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 白色 -->
+    <color name="white_FFFFFF">#FFFFFF</color>
+    <!--<color name="transparent">#00000000</color>-->
+
+    <!--灰色-->
+    <color name="gray_e4e4e4">#EEEEEE</color>
+    <color name="gray_EEEEEE">#EEEEEE</color>
+    <color name="gray_EDEDED">#EDEDED</color>
+    <color name="gray_DDDDDD">#DDDDDD</color>
+    <color name="gray_D7D7D7">#D7D7D7</color>
+    <color name="gray_CCCCCC">#CCCCCC</color>
+    <color name="gray_C6C6C6">#c6c6c6</color>
+    <color name="gray_AAAAAA">#AAAAAA</color>
+    <color name="gray_AEAEAE">#AEAEAE</color>
+    <color name="gray_999999">#999999</color>
+    <color name="gray_818181">#818181</color>
+    <color name="gray_5d5d5d">#5d5d5d</color>
+    <color name="gray_555555">#555555</color>
+    <color name="gray_444444">#444444</color>
+    <color name="gray_333333">#333333</color>
+    <color name="gray_323232">#323232</color>
+    <color name="gray_222222">#222222</color>
+    <color name="gray_111111">#111111</color>
+    <color name="gray_000000">#000000</color>
+
+    <!-- 橘色 -->
+    <color name="orange_FF7201">#FF7201</color>
+    <color name="orange_F05000">#F05000</color>
+
+    <!-- 紫色 -->
+    <color name="purple_8b5eb5">#8b5eb5</color>
+
+    <!--蓝色-->
+    <color name="blue_3399FF">#3399FF</color>
+    <color name="blue_0099FF">#0099FF</color>
+</resources>
