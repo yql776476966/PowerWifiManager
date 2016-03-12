@@ -9,6 +9,8 @@ import android.net.wifi.WifiManager;
 
 import com.example.user.connectwifidemo.lib.wifi.model.ScanResultModel;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class PowerWifiManager {
      * WIFI_STATE_UNKNOWN //未知状态，不在以上四种状态时未知状态
      * 这五种状态中的一种
      */
-    public int checkWifiStatus() {
+    public int getWifiStatus() {
         return rawWifiManager.getWifiState();
     }
 
@@ -80,7 +82,7 @@ public class PowerWifiManager {
      */
     public boolean startWifiScan() {
         //判断wifi是否开启
-        if(checkWifiStatus() == WifiManager.WIFI_STATE_ENABLED) {
+        if(getWifiStatus() == WifiManager.WIFI_STATE_ENABLED) {
             return  rawWifiManager.startScan();
         }
         return false;

@@ -9,12 +9,14 @@
     <!--<color name="transparent">#00000000</color>-->
 
     <!--灰色-->
+    <color name="gray_F8F8F8">#F8F8F8</color>
     <color name="gray_e4e4e4">#EEEEEE</color>
     <color name="gray_EEEEEE">#EEEEEE</color>
     <color name="gray_EDEDED">#EDEDED</color>
     <color name="gray_DDDDDD">#DDDDDD</color>
     <color name="gray_D7D7D7">#D7D7D7</color>
     <color name="gray_CCCCCC">#CCCCCC</color>
+    <color name="gray_CECECE">#CECECE</color>
     <color name="gray_C6C6C6">#c6c6c6</color>
     <color name="gray_AAAAAA">#AAAAAA</color>
     <color name="gray_AEAEAE">#AEAEAE</color>
