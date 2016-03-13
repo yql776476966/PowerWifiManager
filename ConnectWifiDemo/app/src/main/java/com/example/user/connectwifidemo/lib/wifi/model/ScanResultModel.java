@@ -15,6 +15,7 @@ public class ScanResultModel {
     private String capabilities; //描述了身份验证、密钥管理和访问点支持的加密方案
     private long timestamp; //Wifi同步时间
 
+
     public String getSSID() {
         return SSID;
     }
@@ -70,4 +71,5 @@ public class ScanResultModel {
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
+
 }

@@ -3,12 +3,15 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     android:gravity="bottom">
 
     <TextView
         android:id="@+id/operation_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/gray_AEAEAE"
-        android:text="连接的WLAN"/>
+        android:textColor="@color/gray_AEAEAE"/>
 </LinearLayout>

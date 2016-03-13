@@ -5,6 +5,7 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.text.TextUtils;
 
 
 import com.example.user.connectwifidemo.lib.wifi.model.ScanResultModel;
@@ -28,6 +29,13 @@ public class PowerWifiManager {
 
     //------------wif相关变量-------------
     private WifiManager rawWifiManager; //SDK原生Wifi管理器
+    //四种加密类型
+    private final static int NONE = 0x00000000;
+    private final static int WPA_PSK = 0x00000001; //WPA-PSK/WPA2-PSK(目前最安全家用加密)
+    private final static int WPA_EAP = 0x00000002;
+    private final static int IEEE8021X = 0x00000003;
+    //数据集
+    public List<ScanResult> scanResults; //扫描集合
 
 
     private void PowerWifiManager() {} //禁止instance对象
@@ -95,7 +103,8 @@ public class PowerWifiManager {
     public List<ScanResult> getScanResults() {
         //先开启扫描获得最新wifi结果集
         if(startWifiScan()) {
-            return rawWifiManager.getScanResults();
+            this.scanResults = rawWifiManager.getScanResults();
+            return scanResults;
         }
         return null;
     }
@@ -106,7 +115,10 @@ public class PowerWifiManager {
      */
     public List<ScanResultModel> getScanResultModel() {
         List<ScanResultModel> scanResultModels = new ArrayList<ScanResultModel>();
-        List<ScanResult> scanResults = getScanResults();
+
+        if(scanResults == null) {
+            getScanResults();
+        }
         if(scanResults != null) {
             for (ScanResult scanResult : scanResults) {
                 ScanResultModel scanResultModel = new ScanResultModel();
@@ -177,6 +189,59 @@ public class PowerWifiManager {
             }
         }
         return false;
+    }
+
+    /**
+     * 计算信号等级
+     * @param rssi
+     * @param numLevels
+     * @return 计算后的等级
+     */
+    public int calculateSignalLevel(int rssi, int numLevels) {
+        return rawWifiManager.calculateSignalLevel(rssi, numLevels);
+    }
+
+    /**
+     * 从扫描结果里面得到单个wifi信号
+     * @param BSSID
+     * @return
+     */
+    public int getSignalLevelByScanResults(String BSSID) {
+        if(scanResults == null) {
+            getScanResults();
+        }
+        for (ScanResult scanResult : scanResults) {
+            if(scanResult.BSSID.equals(BSSID)) {
+                return scanResult.level;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * 获取秘钥类型
+     * @param SSID wifi名称
+     * @return
+     */
+    public String getKeyType(String SSID) {
+        if(scanResults == null) {
+            getScanResults();
+        }
+        for (ScanResult scResult : scanResults) {
+            if (!TextUtils.isEmpty(scResult.SSID) && scResult.SSID.equals(SSID)) {
+                String capabilities = scResult.capabilities;
+                if (!TextUtils.isEmpty(capabilities)) {
+                    if (capabilities.contains("WPA") || capabilities.contains("wpa")) {
+                        return "WPA/WPA2";
+                    } else if (capabilities.contains("WEP") || capabilities.contains("wep")) {
+                        return "WEP";
+                    } else {
+                        return "";
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     //-----------------------------当前连接wifi信息-----------------------------------

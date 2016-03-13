@@ -18,14 +18,16 @@
             android:id="@+id/wifi_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray_323232"
-            android:textSize="16sp" />
+            android:textColor="@color/orange_F05000"
+            android:textSize="16sp"
+            android:text="Xiaomi_1B50"/>
         <TextView
             android:id="@+id/connective_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gray_AEAEAE"
-            android:layout_marginTop="3dp" />
+            android:layout_marginTop="3dp"
+            android:text="已连接"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="0dp"

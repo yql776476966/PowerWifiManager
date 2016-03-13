@@ -15,6 +15,7 @@ public class WifiAdapterModel {
     private int wifiStatus; //Wifi是否开启
     private WifiInfo curWifiInfo; //当前连接wifi
     private ScanResultModel scanResultModel; //扫描对象
+    private String keyType; //加密类型
 
     public int getMarkType() {
         return markType;
@@ -46,5 +47,13 @@ public class WifiAdapterModel {
 
     public void setScanResultModel(ScanResultModel scanResultModel) {
         this.scanResultModel = scanResultModel;
+    }
+
+    public String getKeyType() {
+        return keyType;
+    }
+
+    public void setKeyType(String keyType) {
+        this.keyType = keyType;
     }
 }

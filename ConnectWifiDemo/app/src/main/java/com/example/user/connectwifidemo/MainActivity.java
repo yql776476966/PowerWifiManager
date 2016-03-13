@@ -46,18 +46,50 @@ public class MainActivity extends AppCompatActivity {
         // 4、wifi列表
 
         //----------------构造WifiAdapter数据源-------------------
-        List<WifiAdapterModel> wifiAdapterModels = new ArrayList<WifiAdapterModel>();
-
+        List<WifiAdapterModel> wifiAdapterModels = new ArrayList<WifiAdapterModel>(); //adapter数据源
         int wifiStatus = powerWifiManager.getWifiStatus(); //WifiManager.WIFI_STATE_ENABLED
         WifiInfo curWifiInfo = powerWifiManager.getCurConnectedWifiInfo();
         List<ScanResultModel> scanResultModels = powerWifiManager.getScanResultModel();
 
-        //wifi开启状态
-        WifiAdapterModel wifiStatusModel = new WifiAdapterModel();
-        wifiStatusModel.setMarkType(0);
-        wifiStatusModel.setWifiStatus(wifiStatus);
-        wifiAdapterModels.add(wifiStatusModel);
+        if(wifiStatus == WifiManager.WIFI_STATE_ENABLED) {
+            //wifi开启状态
+            WifiAdapterModel wifiStatusModel = new WifiAdapterModel();
+            wifiStatusModel.setMarkType(0);
+            wifiStatusModel.setWifiStatus(wifiStatus);
+            wifiAdapterModels.add(wifiStatusModel);
 
+            //提示1
+            WifiAdapterModel hintModel = new WifiAdapterModel();
+            hintModel.setMarkType(1);
+            wifiAdapterModels.add(hintModel);
+
+            //当前wifi状态
+            WifiAdapterModel curInfoModel = new WifiAdapterModel();
+            curInfoModel.setMarkType(2);
+            curInfoModel.setCurWifiInfo(curWifiInfo);
+            curInfoModel.setKeyType(powerWifiManager.getKeyType(curWifiInfo.getSSID()));
+            wifiAdapterModels.add(curInfoModel);
+
+            //提示2
+            WifiAdapterModel hintModelTwo = new WifiAdapterModel();
+            hintModelTwo.setMarkType(1);
+            wifiAdapterModels.add(hintModelTwo);
+
+            //当前扫描结果
+            String curWifiSSID = curWifiInfo.getSSID().replace("\"", "");
+            for(ScanResultModel scanResultModel : scanResultModels) {
+                if (!scanResultModel.getSSID().equals(curWifiSSID)) {
+                    WifiAdapterModel scanResultAdapterModel = new WifiAdapterModel();
+                    scanResultAdapterModel.setScanResultModel(scanResultModel);
+                    scanResultAdapterModel.setMarkType(3);
+                    scanResultAdapterModel.setKeyType(powerWifiManager.getKeyType(scanResultModel.getSSID()));
+                    wifiAdapterModels.add(scanResultAdapterModel);
+                }
+            }
+
+            adapter = new WifiAdapter(context, wifiAdapterModels);
+            wifiListView.setAdapter(adapter);
+        }
     }
 
     /**
